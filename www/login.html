@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link rel='stylesheet' type='text/css' media='screen' href='static/bootstrap/css/bootstrap.css'>
+    <link rel="stylesheet" href="static/bootstrap/css/open-iconic-bootstrap.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='static/style.css'>
+    <script src="static/jquery-3.5.1.min.js"></script>
+    <script src="static/livereload.js"></script>
+    <script src='static/bootstrap/js/bootstrap.js'></script>
+    <script src="config/config-properties.js"></script>
+    <script src="parameter/global-parameter.js"></script>
+    <script src="parameter/page-parameter.js"></script>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="d-flex flex-column min-vh-100">
+        <div class="navbar w-100">
+            <span class="login-brand navbar-brand my-auto text-center w-100 mx-0" style="color: antiquewhite;">3G
+                CELL</span>
+        </div>
+
+        <!-- main container -->
+        <div class="login container d-flex flex-column flex-grow-1" style="padding-top: 10px;">
+            <h6 class="text-center m-0 mt-5 mb-1">Silahkan Login</h6>
+            <div class="mb-5">
+                <hr class="m-0">
+            </div>
+            <div class="w-100 mb-5">
+                <div class="d-flex">
+                    <input class="w-100 btn" type="text" name="nomorHpTxt" id="nomorHpTxt" placeholder="Nomor HP">
+                    <span class="oi oi-person login-icon"></span>
+                </div>
+                <hr class="m-0">
+            </div>
+            <div class="w-100 mb-5">
+                <div class="d-flex">
+                    <input class="w-100 btn" type="password" name="passwordTxt" id="passwordTxt" placeholder="Password">
+                    <span class="oi oi-lock-locked login-icon"></span>
+                </div>
+
+                <hr class="m-0">
+            </div>
+            <div class="w-75 mx-auto mb-3">
+                <button id="loginBtn" class="btn btn-outline-primary w-100 ">Login</button>
+            </div>
+            <div class="w-75 mx-auto">
+                <button id="openSignUp" class="btn btn-outline-primary w-100">Sign Up</button>
+            </div>
+        </div>
+
+        <!-- modal sign up -->
+        <div id="signUpModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm "> <!-- modal-dialog-centered -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sign Up</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="signUpPhoneNumber" class="col-form-label">Nomor Telepon</label>
+                            <input type="text" class="form-control" id="signUpPhoneNumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpNama" class="col-form-label">Nama</label>
+                            <input type="text" class="form-control" id="signUpNama">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpEmail" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="signUpEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpPassword" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="signUpPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpConfirmPassword" class="col-form-label">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="signUpConfirmPassword">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="signUpBtn" type="button" class="btn btn-primary">Sign Up Sekarang</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            document.getElementById('loginBtn').addEventListener("click", doLogin, false);
+            document.getElementById('openSignUp').addEventListener("click", openSignUpModal, false);
+            document.getElementById('signUpBtn').addEventListener("click", doSignUp, false);
+        });
+
+        function doLogin() {
+            let phoneNumber = document.getElementById('nomorHpTxt').value;
+            let password = document.getElementById('passwordTxt').value;
+
+            let authenticationBody = {
+                username: phoneNumber,
+                password: password
+            }
+
+            let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.LOGIN_USER;
+            $.ajax({
+                type: "POST",
+                url: url,
+                contentType: 'application/json',
+                data: JSON.stringify(authenticationBody),
+                success: function (data) {
+                    console.log(data);
+                    GLOBAL_PARAM.saveToken(data);
+                    GLOBAL_PARAM.setPhoneNumber(phoneNumber);
+                    GLOBAL_PARAM.setPage(PAGE.MAIN_MENU);
+                    window.location.href = 'index.html';
+                },
+                error: function (request, status, error) {
+                    alert(request.statusText + '. ' + error);
+                }
+            });
+        }
+
+        function openSignUpModal() {
+            $('#signUpModal').modal('show');
+        }
+
+        function doSignUp() {
+            let phoneNumber = document.getElementById('signUpPhoneNumber').value;
+            let nama = document.getElementById('signUpNama').value;
+            let email = document.getElementById('signUpEmail').value;
+            let password = document.getElementById('signUpPassword').value;
+            let confirmPassword = document.getElementById('signUpConfirmPassword').value;
+
+            let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.SIGN_UP;
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    noTelpon: phoneNumber,
+                    nameUser: nama,
+                    emailUser: email,
+                    passwordUser: password,
+                    idAuthorities: 2
+                }),
+                success: function (data) {
+                    console.log(data);
+                    document.getElementById('nomorHpTxt').value = phoneNumber;
+                    document.getElementById('passwordTxt').value = password;
+
+                    doLogin();
+                },
+                error: function (request, status, error) {
+                    alert(request.statusText + '. ' + error);
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

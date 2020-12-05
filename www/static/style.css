@@ -1,0 +1,213 @@
+/* @media (max-width: @screen-xs-max){} */
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.navbar {
+    background-color: rgb(253, 144, 211);
+}
+
+
+.navhome {
+    padding: 20px 35px;
+    background-color: #df75b3;
+}
+
+/* LOGIN */
+.login-brand {
+    font-size: 2rem;
+}
+
+.login input {
+    border-style: none;
+    text-align: left;
+}
+
+.login input:focus::placeholder {
+    color: transparent;
+}
+
+.login-icon {
+    margin: auto 0.75rem;
+}
+
+
+/* MAIN MENU */
+.saldo-nav {
+    text-align: center;
+    padding: 15px 0px 30px 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgb(255, 164, 229);
+    border-radius: 5px;
+}
+
+.saldo-label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.saldo-label > p:first-child {
+    margin: auto 0 auto 3rem;
+}
+
+.saldo-label > p:last-child {
+    margin: auto;
+}
+
+.saldo-text {
+    color: #c497b1;
+    font-size: 1.5rem;
+}
+
+#menu-payment {
+    border-top: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+}
+
+#menu-payment>div {
+    flex-grow: 1;
+    border-bottom: 1px solid #dddddd;
+    
+}
+
+#menu-payment>div>div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-wrap: wrap;
+    border-right: 1px solid #dddddd;
+
+}
+
+.img-wrapper {
+    display: flex;
+    flex-grow: 1;
+}
+
+.img-wrapper>img {
+    height: 40px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#menu-payment>div>div>label {
+    font-size: 13px;
+    flex-grow: 1;
+    text-align: center;
+    flex-basis: 0;
+}
+
+/* TOP UP */
+.input-nominal {
+    width: 90%;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+}
+
+input.input-nominal::placeholder {
+    font-size: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+input.input-nominal:focus::placeholder {
+    color: transparent;
+}
+
+hr {
+    border-top: 3px solid #dddddd;
+  }
+
+.main-kategori {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-kategori {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.item-kategori {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+
+}
+
+.item-kategori>button {
+    /* margin: auto; */
+    width: 100%;
+    margin: 1px;
+}
+
+/* TOP UP CONFIRM */
+
+#confirm-header {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.confirm-nominal {
+    /* width: 90%; */
+    height: 5rem;
+    font-size: 30px;
+    text-align: center;
+    background-color: #DDDDDD;
+    line-height: 2.5;
+}
+
+#confirm-btn {
+    height: 3.5rem;
+    width: 5rem;
+    font-size: 18px;
+}
+
+
+/* paket internet */
+
+.btn-container {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+}
+
+.text-wrapper {
+    /* width: 20px;
+    height: 20px; */
+    background-color: #DDDDDD;
+    margin: auto auto;
+    padding: 10px 15px;
+}
+
+.text-wrapper>p {
+    margin: auto;
+    width: 3rem;
+    text-align: center;
+}
+
+/* paket internet konfirm */
+
+#internet-detail-paket>div>span:first-child {
+    width: 8rem;
+}
+

@@ -1,0 +1,47 @@
+<div class="navbar w-100">
+    <div class="navbar-brand my-auto" style="color: antiquewhite;">
+        <div class="d-flex flex-row my-auto">
+            <a id="back-btn" class="oi oi-arrow-left my-auto"></a>
+            <label class="my-auto pl-4" for="">Top Up</label>
+        </div>
+    </div>
+</div>
+
+<!-- main container -->
+<div class="container d-flex flex-column flex-grow-1" style="padding-top: 10px;">
+    <!-- header -->
+    <div class="text-center mt-3 mb-3">
+        <p>Pengisian Top Up minimal Rp.20.000</p>
+    </div>
+
+    <!-- input section -->
+    <div id="input-section" class="d-flex flex-column rounded-lg" style="background-color: #F7E8EF;">
+        <p class="mx-auto mt-3">
+            Jumlah nominal Top Up
+        </p>
+        <div class="w-100 d-flex justify-content-center">
+            <input id="nominal-topup" class="form-control input-nominal" type="number" name="nominal-topup"
+                placeholder="Masukkan nominal top up disini">
+        </div>
+        <div class="mt-5 mb-3 w-100 d-flex justify-content-center">
+            <button id='topup-btn' class="btn btn-primary w-50">Top Up Sekarang</button>
+        </div>
+    </div>
+
+    <!-- kategori section -->
+    <div class="d-flex flex-column mt-5">
+        <div>
+            <p class="my-auto">
+                Pembayaran via
+            </p>
+        </div>
+        <div>
+            <hr>
+        </div>
+
+        <!-- kategori dynamic from api -->
+        <div class="main-kategori">
+
+        </div>
+    </div>
+</div>
