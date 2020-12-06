@@ -45,6 +45,9 @@
     <script src='app-js/top-up-confirm.js'></script>
     <script src='app-js/paket-internet.js'></script>
     <script src='app-js/paket-internet-confirm.js'></script>
+    <script src='app-js/history.js'></script>
+    <script src='app-js/sms.js'></script>
+    <script src='app-js/sms-confirm.js'></script>
 
 
     <script>
@@ -92,6 +95,12 @@
                 internet.loadView();
             } else if (currentPage === PAGE.PAKET_INTERNET_CONFIRM) {
                 internetConf.loadView();
+            } else if (currentPage === PAGE.HISTORY) {
+                history.loadView();
+            } else if (currentPage === PAGE.SMS) {
+                sms.loadView();
+            } else if (currentPage === PAGE.SMS_CONFIRM) {
+                smsConfirm.loadView();
             }
         }
     </script>

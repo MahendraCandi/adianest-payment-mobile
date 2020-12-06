@@ -11,3 +11,6 @@ CONFIG_PROPERTIES.USER_BY_PHONE = "/api/user/get/phone/";
 CONFIG_PROPERTIES.SIGN_UP = "/signup";
 CONFIG_PROPERTIES.KATEGORI_INTERNET = "/api/internet/paket/all";
 CONFIG_PROPERTIES.INSERT_INTERNET = "/api/internet/paket/insert";
+CONFIG_PROPERTIES.HISTORY = "/api/history/all";
+CONFIG_PROPERTIES.KETEGORI_SMS = "/api/sms/all";
+CONFIG_PROPERTIES.INSERT_SMS = "/api/sms/insert";

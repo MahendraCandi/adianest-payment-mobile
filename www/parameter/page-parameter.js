@@ -3,5 +3,8 @@ var PAGE = {
     TOP_UP: "top-up.html",
     TOP_UP_CONFIRM: "top-up-confirm.html",
     PAKET_INTERNET: "paket-internet.html",
-    PAKET_INTERNET_CONFIRM: "paket-internet-confirm.html"
+    PAKET_INTERNET_CONFIRM: "paket-internet-confirm.html",
+    HISTORY: "history.html",
+    SMS: "sms.html",
+    SMS_CONFIRM: "sms-confirm.html"
 }

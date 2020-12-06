@@ -37,10 +37,13 @@ mainMenu.getUserCredential = function () {
         },
         complete: function () {
             document.getElementById("top-up-btn").addEventListener("click", mainMenu.directTopUpPage, false);
+            document.getElementById("history-btn").addEventListener("click", mainMenu.directHistoryPage, false);
             document.getElementById('saldoBalance').innerText =
                 formatRupiah(GLOBAL_PARAM.getUserCredential().endingBalance, 'Rp.');
             document.getElementById("directPaketInternet")
                 .addEventListener("click", mainMenu.directInternetPage, false);
+            document.getElementById("directSms")
+                .addEventListener("click", mainMenu.directSmsPage, false);
             mainMenu.showView();
             mainMenu.hideModal();
         },
@@ -74,8 +77,16 @@ mainMenu.directTopUpPage = function () {
 }
 
 mainMenu.directInternetPage = function () {
-    console.log('test');
-
     GLOBAL_PARAM.setPage(PAGE.PAKET_INTERNET);
+    changePage();
+}
+
+mainMenu.directHistoryPage = function () {
+    GLOBAL_PARAM.setPage(PAGE.HISTORY);
+    changePage();
+}
+
+mainMenu.directSmsPage = function () {
+    GLOBAL_PARAM.setPage(PAGE.SMS);
     changePage();
 }

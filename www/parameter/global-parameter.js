@@ -2,7 +2,8 @@ var GLOBAL_PARAM = {
     TOP_UP: "TOP_UP",
     TOKEN: "TOKEN",
     USER: "USER",
-    INTERNET: "INTERNET"
+    INTERNET: "INTERNET",
+    SMS: "SMS"
 }
 
 GLOBAL_PARAM.setTopUp = function (userId, transaksiId, kodePembayaran) {
@@ -33,6 +34,18 @@ GLOBAL_PARAM.getPaketInternet = function () {
 
 GLOBAL_PARAM.clearPaketInternet = function () {
     return window.localStorage.removeItem(GLOBAL_PARAM.INTERNET);
+}
+
+GLOBAL_PARAM.setPaketSms = function (paket) {
+    window.localStorage.setItem(GLOBAL_PARAM.SMS, JSON.stringify(paket));
+}
+
+GLOBAL_PARAM.getPaketSms = function () {
+    return JSON.parse(window.localStorage.getItem(GLOBAL_PARAM.SMS));
+}
+
+GLOBAL_PARAM.clearPaketSms = function () {
+    return window.localStorage.removeItem(GLOBAL_PARAM.SMS);
 }
 
 GLOBAL_PARAM.saveToken = function(token) {

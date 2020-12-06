@@ -211,3 +211,17 @@ hr {
     width: 8rem;
 }
 
+/* history */
+#historyList {
+    font-size: 14px;
+}
+
+.smsDescription {
+    background-color: #DDDDDD;
+    height: 5.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.smsDescription>span {
+    padding: 0 10px;
+}
