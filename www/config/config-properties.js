@@ -1,5 +1,6 @@
 var CONFIG_PROPERTIES = {};
 
+// CONFIG_PROPERTIES.HOST_NAME = "http://159.65.140.154:8123";
 CONFIG_PROPERTIES.HOST_NAME = "http://localhost:8123";
 CONFIG_PROPERTIES.KATEGORI_TOPUP_ALL = "/api/kategori/topup/all"; 
 CONFIG_PROPERTIES.TOPUP_CONFIRM_INSERT = "/api/topup/confirm/insert";
@@ -14,3 +15,9 @@ CONFIG_PROPERTIES.INSERT_INTERNET = "/api/internet/paket/insert";
 CONFIG_PROPERTIES.HISTORY = "/api/history/all";
 CONFIG_PROPERTIES.KETEGORI_SMS = "/api/sms/all";
 CONFIG_PROPERTIES.INSERT_SMS = "/api/sms/insert";
+CONFIG_PROPERTIES.KATEGORI_TELEPON = "/api/telepon/all";
+CONFIG_PROPERTIES.INSERT_TELEPON = "/api/telepon/insert";
+CONFIG_PROPERTIES.KATEGORI_PULSA = "/api/pulsa/all";
+CONFIG_PROPERTIES.INSERT_PULSA = "/api/pulsa/insert";
+CONFIG_PROPERTIES.KATEGORI_DIGITAL = "/api/digital/all";
+CONFIG_PROPERTIES.INSERT_DIGITAL = "/api/digital/insert";

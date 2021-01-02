@@ -1,30 +1,51 @@
-var pulsa = {}
+var digital = {}
 
 
-pulsa.loadView = function () {
-    $('#loadView').load('views/' + PAGE.PULSA, pulsa.getData);
+digital.loadView = function () {
+    $('#loadView').load('views/' + PAGE.DIGITAL, digital.getData);
 }
 
-pulsa.hideView = function () {
+digital.hideView = function () {
     $('#loadView').attr('style', 'display:none !important');
 }
 
-pulsa.showView = function () {
+digital.showView = function () {
     $('#loadView').show();
 }
 
-pulsa.hideModal = function () {
+digital.hideModal = function () {
     $('#loadingModal').modal('hide');
 }
 
-pulsa.getData = function () {
-    GLOBAL_PARAM.clearPulsa();
-    pulsa.hideView();
-    pulsa.getAllCategory();
+digital.getData = function () {
+    GLOBAL_PARAM.clearDigital();
+    digital.hideView();
+    digital.setTitle();
+    digital.getAllCategory();
 }
 
-pulsa.getAllCategory = function() {
-    let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.KATEGORI_PULSA;
+digital.setTitle = function () {
+    let page = GLOBAL_PARAM.getDigitalPage().page;
+    let title = "";
+
+    if (page === GLOBAL_PARAM.SHOOPEE_PAY) {
+        title = "ShoopePay";
+    } else if (page === GLOBAL_PARAM.OVO) {
+        title = "OVO";
+    } else if (page === GLOBAL_PARAM.DANA) {
+        title = "DANA";
+    } else if (page === GLOBAL_PARAM.GOPAY) {
+        title = "Gopay";
+    } else if (page === GLOBAL_PARAM.GRAB) {
+        title = "Grab";
+    }
+
+    $('#digitalPageTitle').text(title);
+    $('#insertTitle').text('Masukkan nomor ' + title);
+}
+
+digital.getAllCategory = function() {
+    let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.KATEGORI_DIGITAL;
     $.ajax({
         type: "GET",
         url: url,
@@ -34,12 +55,12 @@ pulsa.getAllCategory = function() {
         },
         success: function (data) {
             console.log(data);
-            pulsa.setPaketButton(data);
+            digital.setPaketButton(data);
         },
         complete: function () {
-            pulsa.showView();
-            document.getElementById('fireBtn').addEventListener("click", pulsa.fireBtn, false);
-            document.getElementById('back-btn').addEventListener("click", pulsa.backHistory, false);
+            digital.showView();
+            document.getElementById('fireBtn').addEventListener("click", digital.fireBtn, false);
+            document.getElementById('back-btn').addEventListener("click", digital.backHistory, false);
         },
         error: function (request, status, error) {
             alert(request.statusText + '\n' + url);
@@ -47,35 +68,35 @@ pulsa.getAllCategory = function() {
     });
 }
 
-pulsa.fireBtn = function () {
+digital.fireBtn = function () {
     let nomorHp = $('#inputNomorHp').val();
     if (nomorHp === '') {
         alert('Masukkan nomor HP yang dituju!');
         return;
     }
 
-    let choosedPaket = GLOBAL_PARAM.getPulsa();
+    let choosedPaket = GLOBAL_PARAM.getDigital();
     if (choosedPaket === null) {
         alert('Pilih paket yang mau dibeli!');
         return;
     }
     choosedPaket.nomorHp = nomorHp;
-    GLOBAL_PARAM.setPulsa(choosedPaket);
+    GLOBAL_PARAM.setDigital(choosedPaket);
 
-    GLOBAL_PARAM.setPage(PAGE.PULSA_CONFIRM);
+    GLOBAL_PARAM.setPage(PAGE.DIGITAL_CONFIRM);
     changePage();
 }
 
 
-pulsa.setPaketButton = function(data) {
-    let div = document.getElementById('pulsa-kategori');
+digital.setPaketButton = function(data) {
+    let div = document.getElementById('digital-kategori');
     let row = undefined;
 
     let indexData = 1;
     let records = $(data).length;
     $(data).each(function(i, paket) {
         if (i === 0) {
-            row = pulsa.createRow();
+            row = digital.createRow();
         }
 
         let p = document.createElement('p');
@@ -87,7 +108,7 @@ pulsa.setPaketButton = function(data) {
         let wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'text-wrapper');
         wrapper.appendChild(p);
-        wrapper.addEventListener('click', pulsa.choosePaket, false);
+        wrapper.addEventListener('click', digital.choosePaket, false);
 
         let container = document.createElement('div');
         container.setAttribute('class', 'btn-container');
@@ -97,10 +118,10 @@ pulsa.setPaketButton = function(data) {
 
         if (indexData % 3 === 0) {
             div.appendChild(row);
-            row = pulsa.createRow(); 
+            row = digital.createRow(); 
         } else if (indexData === records) {
             div.appendChild(row);
-            row = pulsa.createRow(); 
+            row = digital.createRow(); 
         }
 
         indexData++;
@@ -108,13 +129,13 @@ pulsa.setPaketButton = function(data) {
 
 }
 
-pulsa.createRow = function() {
+digital.createRow = function() {
     let row = document.createElement('div');
     row.setAttribute('class', 'd-flex mb-3');
     return row;
 }
 
-pulsa.choosePaket = function() {
+digital.choosePaket = function() {
     $('div.bg-success').removeClass('bg-success');
     
     let attr = $(this).attr('class');
@@ -128,12 +149,13 @@ pulsa.choosePaket = function() {
         harga: "" + p.data('harga')
     }
 
-    GLOBAL_PARAM.setPulsa(choosedPaket);
+    GLOBAL_PARAM.setDigital(choosedPaket);
     
 }
 
-pulsa.backHistory = function () {
-    GLOBAL_PARAM.clearPulsa();
+digital.backHistory = function () {
+    GLOBAL_PARAM.clearDigital();
+    GLOBAL_PARAM.clearDigitalPage();
     GLOBAL_PARAM.setPage(PAGE.MAIN_MENU);
     changePage();
 }

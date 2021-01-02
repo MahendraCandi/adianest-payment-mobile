@@ -48,7 +48,12 @@
     <script src='app-js/history.js'></script>
     <script src='app-js/sms.js'></script>
     <script src='app-js/sms-confirm.js'></script>
-
+    <script src='app-js/telepon.js'></script>
+    <script src='app-js/telepon-confirmasi.js'></script>
+    <script src='app-js/pulsa.js'></script>
+    <script src='app-js/pulsa-confirmasi.js'></script>
+    <script src='app-js/digital.js'></script>
+    <script src='app-js/digital-confirm.js'></script>
 
     <script>
         // check platform is mobil app or browser
@@ -65,6 +70,7 @@
             // check credential
             if (GLOBAL_PARAM.getToken() === null) {
                 GLOBAL_PARAM.clearPage();
+                GLOBAL_PARAM.clearAllStorage();
                 window.location.href = "login.html";
             }
 
@@ -80,6 +86,9 @@
         }
 
         function changePage() {
+
+            checkToken();
+
             var currentPage = GLOBAL_PARAM.getLastPage();
 
             // showLoading();
@@ -101,6 +110,35 @@
                 sms.loadView();
             } else if (currentPage === PAGE.SMS_CONFIRM) {
                 smsConfirm.loadView();
+            } else if (currentPage === PAGE.TELEPON) {
+                telp.loadView();
+            } 
+            else if (currentPage === PAGE.TELEPON_CONFIRM) {
+                telpConfirm.loadView();
+            } 
+            else if (currentPage === PAGE.PULSA) {
+                pulsa.loadView();
+            }
+            else if (currentPage === PAGE.PULSA_CONFIRM) {
+                pulsaConf.loadView();
+            }
+            else if (currentPage === PAGE.DIGITAL) {
+                digital.loadView();
+            }
+            else if (currentPage === PAGE.DIGITAL_CONFIRM) {
+                digitalConf.loadView();
+            }
+
+            else {
+                mainMenu.loadView();
+            }
+        }
+
+        function checkToken() {
+            if (GLOBAL_PARAM.getTokenExpirationDate() <= new Date()) {
+                GLOBAL_PARAM.clearPage();
+                GLOBAL_PARAM.clearAllStorage();
+                window.location.href = "login.html";
             }
         }
     </script>

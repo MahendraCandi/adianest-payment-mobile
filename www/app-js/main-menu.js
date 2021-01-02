@@ -44,6 +44,15 @@ mainMenu.getUserCredential = function () {
                 .addEventListener("click", mainMenu.directInternetPage, false);
             document.getElementById("directSms")
                 .addEventListener("click", mainMenu.directSmsPage, false);
+            document.getElementById("directTelepon")
+                .addEventListener("click", mainMenu.directTelpPage, false);
+            document.getElementById("directPulsa")
+                .addEventListener("click", mainMenu.directPulsaPage, false);
+            document.getElementById("directShopee").addEventListener("click", mainMenu.directShopee, false);
+            document.getElementById("directOvo").addEventListener("click", mainMenu.directOvo, false);
+            document.getElementById("directGrab").addEventListener("click", mainMenu.directGrab, false);
+            document.getElementById("directGopay").addEventListener("click", mainMenu.directGopay, false);
+            document.getElementById("directDana").addEventListener("click", mainMenu.directDana, false);
             mainMenu.showView();
             mainMenu.hideModal();
         },
@@ -51,12 +60,10 @@ mainMenu.getUserCredential = function () {
             alert(request.statusText + '\n' + url);
         }
     });
-
-    console.log("End getUserCredentias");
 }
 
 function formatRupiah(angka, prefix) {
-    var number_string = angka.replace(/[^\.\d]/g, '').toString(),
+    let number_string = angka.replace(/[^\.\d]/g, '').toString(),
         split = number_string.split(','),
         sisa = split[0].length % 3,
         rupiah = split[0].substr(0, sisa),
@@ -88,5 +95,45 @@ mainMenu.directHistoryPage = function () {
 
 mainMenu.directSmsPage = function () {
     GLOBAL_PARAM.setPage(PAGE.SMS);
+    changePage();
+}
+
+mainMenu.directTelpPage = function () {
+    GLOBAL_PARAM.setPage(PAGE.TELEPON);
+    changePage();
+}
+
+mainMenu.directPulsaPage = function () {
+    GLOBAL_PARAM.setPage(PAGE.PULSA);
+    changePage();
+}
+
+mainMenu.directShopee = function () {
+    GLOBAL_PARAM.setPage(PAGE.DIGITAL);
+    GLOBAL_PARAM.setDigitalPage({'page': GLOBAL_PARAM.SHOOPEE_PAY});
+    changePage();
+}
+
+mainMenu.directOvo = function () {
+    GLOBAL_PARAM.setPage(PAGE.DIGITAL);
+    GLOBAL_PARAM.setDigitalPage({'page': GLOBAL_PARAM.OVO});
+    changePage();
+}
+
+mainMenu.directDana = function () {
+    GLOBAL_PARAM.setPage(PAGE.DIGITAL);
+    GLOBAL_PARAM.setDigitalPage({'page': GLOBAL_PARAM.DANA});
+    changePage();
+}
+
+mainMenu.directGopay = function () {
+    GLOBAL_PARAM.setPage(PAGE.DIGITAL);
+    GLOBAL_PARAM.setDigitalPage({'page': GLOBAL_PARAM.GOPAY});
+    changePage();
+}
+
+mainMenu.directGrab = function () {
+    GLOBAL_PARAM.setPage(PAGE.DIGITAL);
+    GLOBAL_PARAM.setDigitalPage({'page': GLOBAL_PARAM.GRAB});
     changePage();
 }
