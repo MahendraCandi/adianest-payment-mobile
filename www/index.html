@@ -54,6 +54,7 @@
     <script src='app-js/pulsa-confirmasi.js'></script>
     <script src='app-js/digital.js'></script>
     <script src='app-js/digital-confirm.js'></script>
+    <script src='app-js/profile.js'></script>
 
     <script>
         // check platform is mobil app or browser
@@ -128,7 +129,9 @@
             else if (currentPage === PAGE.DIGITAL_CONFIRM) {
                 digitalConf.loadView();
             }
-
+            else if (currentPage === PAGE.PROFILE) {
+                profile.loadView();
+            }
             else {
                 mainMenu.loadView();
             }

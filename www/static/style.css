@@ -225,3 +225,19 @@ hr {
 .smsDescription>span {
     padding: 0 10px;
 }
+
+#profile + div.dropdown-menu {
+    right: 1%;
+    left: 1%;
+}
+
+#img-profile {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn-profile {
+    text-align: left;
+}

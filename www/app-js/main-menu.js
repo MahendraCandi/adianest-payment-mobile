@@ -40,14 +40,12 @@ mainMenu.getUserCredential = function () {
             document.getElementById("history-btn").addEventListener("click", mainMenu.directHistoryPage, false);
             document.getElementById('saldoBalance').innerText =
                 formatRupiah(GLOBAL_PARAM.getUserCredential().endingBalance, 'Rp.');
-            document.getElementById("directPaketInternet")
-                .addEventListener("click", mainMenu.directInternetPage, false);
-            document.getElementById("directSms")
-                .addEventListener("click", mainMenu.directSmsPage, false);
-            document.getElementById("directTelepon")
-                .addEventListener("click", mainMenu.directTelpPage, false);
-            document.getElementById("directPulsa")
-                .addEventListener("click", mainMenu.directPulsaPage, false);
+            document.getElementById("ubah-profile").addEventListener("click", mainMenu.ubahProfil, false);
+            document.getElementById("logout").addEventListener("click", mainMenu.logout, false);
+            document.getElementById("directPaketInternet").addEventListener("click", mainMenu.directInternetPage, false);
+            document.getElementById("directSms").addEventListener("click", mainMenu.directSmsPage, false);
+            document.getElementById("directTelepon").addEventListener("click", mainMenu.directTelpPage, false);
+            document.getElementById("directPulsa").addEventListener("click", mainMenu.directPulsaPage, false);
             document.getElementById("directShopee").addEventListener("click", mainMenu.directShopee, false);
             document.getElementById("directOvo").addEventListener("click", mainMenu.directOvo, false);
             document.getElementById("directGrab").addEventListener("click", mainMenu.directGrab, false);
@@ -136,4 +134,15 @@ mainMenu.directGrab = function () {
     GLOBAL_PARAM.setPage(PAGE.DIGITAL);
     GLOBAL_PARAM.setDigitalPage({'page': GLOBAL_PARAM.GRAB});
     changePage();
+}
+
+mainMenu.ubahProfil = function () {
+    GLOBAL_PARAM.setPage(PAGE.PROFILE);
+    changePage();
+}
+
+mainMenu.logout = function () {
+    GLOBAL_PARAM.clearAllStorage();
+    GLOBAL_PARAM.clearPage();
+    window.location.href = "login.html";   
 }

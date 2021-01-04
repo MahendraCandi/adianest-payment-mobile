@@ -1,0 +1,66 @@
+<div class="navbar w-100">
+    <div class="navbar-brand my-auto" style="color: antiquewhite;">
+        <div class="d-flex flex-row my-auto">
+            <a id="back-btn" class="oi oi-arrow-left my-auto"></a>
+            <label class="my-auto pl-4" for="">Ubah Profile</label>
+        </div>
+    </div>
+</div>
+
+<!-- main container -->
+<div class="container d-flex flex-column flex-grow-1"
+    style="padding-top: 10px; padding-left: 2rem; padding-right: 2rem;">
+    <!-- photo, name, and phone section -->
+    <div class="mt-3 mx-auto d-flex flex-column">
+        <div class="mx-auto">
+            <img class="mx-auto" src="image/default-image.png" id="img-profile" data-toggle="modal" data-target="#cameraOption">
+            <div class="modal fade" id="cameraOption" tabindex="-1" aria-labelledby="cameraOptionLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="cameraOptionLabel">Ambil Gambar</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <button id="openCamera" class="btn btn-outline-primary w-100 my-1" data-dismiss="modal">Buka Camera</button>
+                            <button id="openGallery" class="btn btn-outline-success w-100 my-1" data-dismiss="modal">Buka Galeri</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <p id="nameLabel" class="mx-auto mb-0 text-center mt-2">Candi Mahendra Tralala</p>
+        <p id="phoneLabel" class="mx-auto mb-0 text-center">081234123412</p>
+    </div>
+    <!-- kategori section -->
+    <div id="digital-kategori" class="d-flex flex-column mt-3">
+        <h6>Ubah Profil</h6>
+        <div class="w-100 my-2">
+            <div class="d-flex">
+                <input class="w-100 btn btn-profile" type="text" name="namaLengkap" id="namaLengkap" placeholder="Nama Lengkap">
+                <span class="oi oi-person login-icon"></span>
+            </div>
+            <hr class="m-0">
+        </div>
+        <div class="w-100 my-2">
+            <div class="d-flex">
+                <input class="w-100 btn btn-profile" type="text" name="nomorPonsel" id="nomorPonsel" placeholder="Nomor Ponsel">
+                <span class="oi oi-phone login-icon"></span>
+            </div>
+            <hr class="m-0">
+        </div>
+        <div class="w-100 my-2">
+            <div class="d-flex">
+                <input class="w-100 btn btn-profile" type="email" name="email" id="email" placeholder="Alamat Email">
+                <span class="oi oi-envelope-closed login-icon"></span>
+            </div>
+            <hr class="m-0">
+        </div>
+    </div>
+    <div class="w-100 text-center mt-3">
+        <button id="fireBtn" class="btn btn-outline-primary w-100">Simpan</button>
+    </div>
+</div>

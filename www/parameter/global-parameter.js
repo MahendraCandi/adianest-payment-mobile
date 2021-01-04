@@ -13,20 +13,13 @@ var GLOBAL_PARAM = {
     OVO: "OVO",
     DANA: "DANA",
     GOPAY: "GOPAY",
-    GRAB: "GRAB"
+    GRAB: "GRAB",
+    IMG_PROFILE: "img-profile",
+    AVAILABLE_IMG: "available-img"
 }
 
 GLOBAL_PARAM.clearAllStorage = function () {
-    window.localStorage.removeItem(GLOBAL_PARAM.PHONE_NUMBER);
-    window.localStorage.removeItem(GLOBAL_PARAM.TOP_UP);
-    window.localStorage.removeItem(GLOBAL_PARAM.TOKEN);
-    window.localStorage.removeItem(GLOBAL_PARAM.USER);
-    window.localStorage.removeItem(GLOBAL_PARAM.INTERNET);
-    window.localStorage.removeItem(GLOBAL_PARAM.SMS);
-    window.localStorage.removeItem(GLOBAL_PARAM.TELP);
-    window.localStorage.removeItem(GLOBAL_PARAM.PULSA);
-    window.localStorage.removeItem(GLOBAL_PARAM.DIGITAL);
-    window.localStorage.removeItem(GLOBAL_PARAM.DIGITAL_PAGE);
+    window.localStorage.clear();
 }
 
 GLOBAL_PARAM.setTopUp = function (userId, transaksiId, kodePembayaran) {
@@ -151,6 +144,32 @@ GLOBAL_PARAM.getPhoneNumber = function() {
 
 GLOBAL_PARAM.clearPhoneNumber = function() {
     window.localStorage.removeItem(GLOBAL_PARAM.PHONE_NUMBER);
+}
+
+GLOBAL_PARAM.setImgProfile = function(blob) {
+    window.localStorage.setItem(GLOBAL_PARAM.IMG_PROFILE, blob);
+}
+
+GLOBAL_PARAM.getImgProfile = function() {
+    let phoneNumber = window.localStorage.getItem(GLOBAL_PARAM.IMG_PROFILE);
+    return phoneNumber;
+}
+
+GLOBAL_PARAM.clearImgProfile = function() {
+    window.localStorage.removeItem(GLOBAL_PARAM.IMG_PROFILE);
+}
+
+GLOBAL_PARAM.setAvailableImg = function(data) {
+    window.localStorage.setItem(GLOBAL_PARAM.AVAILABLE_IMG, data);
+}
+
+GLOBAL_PARAM.getAvailableImg = function() {
+    let phoneNumber = window.localStorage.getItem(GLOBAL_PARAM.AVAILABLE_IMG);
+    return phoneNumber;
+}
+
+GLOBAL_PARAM.clearAvailableImg = function() {
+    window.localStorage.removeItem(GLOBAL_PARAM.AVAILABLE_IMG);
 }
 
 GLOBAL_PARAM.saveUserCredential = function(user) {

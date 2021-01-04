@@ -12,5 +12,6 @@ var PAGE = {
     PULSA: "pulsa.html",
     PULSA_CONFIRM: "pulsa-confirm.html",
     DIGITAL: "digital.html",
-    DIGITAL_CONFIRM: "digital-confirm.html"
+    DIGITAL_CONFIRM: "digital-confirm.html",
+    PROFILE: "profile.html"
 }
