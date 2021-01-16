@@ -44,6 +44,10 @@ profile.getPicture = function () {
         return;
     }
 
+    if (u.idPhoto === undefined || u.idPhoto === null) {
+        return;
+    }
+
     let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.PROFILE_PICTURE + "/" + u.idPhoto;
 
     $.ajax({

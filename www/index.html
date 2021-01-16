@@ -55,26 +55,62 @@
     <script src='app-js/digital.js'></script>
     <script src='app-js/digital-confirm.js'></script>
     <script src='app-js/profile.js'></script>
+    <script src='app-js/notification.js'></script>
+    <script src='app-js/transaksi-detail.js'></script>
 
     <script>
         // check platform is mobil app or browser
-        if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+        var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+        if (app) {
+            GLOBAL_PARAM.setIsMobile(true);
+
             document.addEventListener("deviceready", onDeviceReady, false);
+            document.addEventListener("deviceready", firebaseFunction, false);
+            document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+            }, false);
         } else {
             $(document).ready(function () {
                 onDeviceReady();
             });
         }
 
-        function onDeviceReady() {
+        function firebaseFunction () {
+            cordova.plugins.firebase.messaging.onMessage(function(payload) {
+                console.log("New foreground FCM message: ", payload);
+            });
 
+            cordova.plugins.firebase.messaging.onBackgroundMessage(function(payload) {
+                console.log("New background FCM message: ", payload);
+            });
+
+            cordova.plugins.firebase.messaging.requestPermission({forceShow: true}).then(function() {
+                console.log("You'll get foreground notifications when a push message arrives");
+            });
+
+            cordova.plugins.firebase.messaging.getToken().then(function(token) {
+                console.log("Got device token: ", token);
+                //insertFcmToken(token);
+            });
+
+            cordova.plugins.firebase.messaging.onTokenRefresh(function() {
+                console.log("Device token updated");
+                cordova.plugins.firebase.messaging.getToken().then(function(token) {
+                    console.log("Got device token after refresh: ", token);
+                    //insertFcmToken(token);
+                });
+            });
+
+            cordova.plugins.firebase.messaging.subscribe("test-topic");
+        }
+
+        function onDeviceReady() {
             // check credential
             if (GLOBAL_PARAM.getToken() === null) {
                 GLOBAL_PARAM.clearPage();
                 GLOBAL_PARAM.clearAllStorage();
                 window.location.href = "login.html";
             }
-
             changePage();
         }
 
@@ -113,26 +149,23 @@
                 smsConfirm.loadView();
             } else if (currentPage === PAGE.TELEPON) {
                 telp.loadView();
-            } 
-            else if (currentPage === PAGE.TELEPON_CONFIRM) {
+            } else if (currentPage === PAGE.TELEPON_CONFIRM) {
                 telpConfirm.loadView();
-            } 
-            else if (currentPage === PAGE.PULSA) {
+            } else if (currentPage === PAGE.PULSA) {
                 pulsa.loadView();
-            }
-            else if (currentPage === PAGE.PULSA_CONFIRM) {
+            } else if (currentPage === PAGE.PULSA_CONFIRM) {
                 pulsaConf.loadView();
-            }
-            else if (currentPage === PAGE.DIGITAL) {
+            } else if (currentPage === PAGE.DIGITAL) {
                 digital.loadView();
-            }
-            else if (currentPage === PAGE.DIGITAL_CONFIRM) {
+            } else if (currentPage === PAGE.DIGITAL_CONFIRM) {
                 digitalConf.loadView();
-            }
-            else if (currentPage === PAGE.PROFILE) {
+            } else if (currentPage === PAGE.PROFILE) {
                 profile.loadView();
-            }
-            else {
+            } else if (currentPage === PAGE.NOTIFICATION) {
+                notif.loadView();
+            } else if (currentPage === PAGE.TRANSAKSI_DETAIL) {
+                transDetail.loadView();
+            } else {
                 mainMenu.loadView();
             }
         }
@@ -143,6 +176,43 @@
                 GLOBAL_PARAM.clearAllStorage();
                 window.location.href = "login.html";
             }
+        }
+
+        function getFcmToken () {
+            if (GLOBAL_PARAM.getIsMobile()) {
+                cordova.plugins.firebase.messaging.getToken().then(function(token) {
+                    console.log("Got device token: ", token);
+                    insertFcmToken(token);
+                });
+            }
+            return;
+        }
+
+        function insertFcmToken (token) {
+            
+            let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.INSERT_FCM_TOKEN;
+            let u = GLOBAL_PARAM.getUserCredential();
+            let formData = new FormData();
+            formData.append("id", u.idUser);
+            formData.append("token", token);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: formData,
+                headers: {
+                    'Authorization': 'Bearer ' + GLOBAL_PARAM.getToken()
+                },
+                success: function (data) {
+                    console.log("insert fcm token success");
+                },
+                error: function (request, status, error) {
+                    console.error("insert fcm token failed. Error: " + error);
+                    alert(request.statusText + '\n' + url);
+                }
+            });
         }
     </script>
 </body>

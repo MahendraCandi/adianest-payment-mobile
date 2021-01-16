@@ -18,6 +18,7 @@ history.hideModal = function () {
 
 history.getData = function () {
     history.showView();
+    document.getElementById('back-btn').addEventListener('click', history.backHistory, false);
     history.getAllHistory();
 }
 
@@ -38,7 +39,6 @@ history.getAllHistory = function () {
         success: function (data) {
             console.log(data);
             history.setTransaksiList(data);
-            document.getElementById('back-btn').addEventListener('click', history.backHistory, false);
         },
         error: function (request, status, error) {
             alert(request.statusText + '\n' + url);
@@ -51,6 +51,8 @@ history.setTransaksiList = function (data) {
     $(data).each(function (i, h) {
 
         let row = history.createRow();
+        row.dataset.idTransaksi = h.idTransaksi;
+        row.addEventListener('click', history.getTransaksiDetail, false);
 
         let span = document.createElement('span');
         span.innerText = '*';
@@ -86,5 +88,12 @@ history.createRow = function () {
 
 history.backHistory = function () {
     GLOBAL_PARAM.setPage(PAGE.MAIN_MENU);
+    changePage();
+}
+
+history.getTransaksiDetail = function () {
+    let page = GLOBAL_PARAM.getLastPage();
+    GLOBAL_PARAM.setPage(PAGE.TRANSAKSI_DETAIL);
+    GLOBAL_PARAM.setTransaksiDetail(this.dataset.idTransaksi, page);
     changePage();
 }

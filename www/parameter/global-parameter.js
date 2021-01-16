@@ -15,7 +15,9 @@ var GLOBAL_PARAM = {
     GOPAY: "GOPAY",
     GRAB: "GRAB",
     IMG_PROFILE: "img-profile",
-    AVAILABLE_IMG: "available-img"
+    AVAILABLE_IMG: "available-img",
+    IS_MOBILE_APP: "is-mobile",
+    TRANSAKSI_DETAIL: "transaksi-detail"
 }
 
 GLOBAL_PARAM.clearAllStorage = function () {
@@ -190,4 +192,33 @@ GLOBAL_PARAM.getLastPage = function() {
 
 GLOBAL_PARAM.clearPage = function() {
     window.sessionStorage.removeItem("page");
+}
+
+GLOBAL_PARAM.clearIsMobile = function() {
+    window.localStorage.removeItem(GLOBAL_PARAM.IS_MOBILE_APP);
+}
+
+GLOBAL_PARAM.setIsMobile = function(data) {
+    window.localStorage.setItem(GLOBAL_PARAM.IS_MOBILE_APP, data);
+}
+
+GLOBAL_PARAM.getIsMobile = function() {
+    let isMobile = window.localStorage.getItem(GLOBAL_PARAM.IS_MOBILE_APP);
+    return isMobile;
+}
+
+GLOBAL_PARAM.clearTransaksiDetail = function() {
+    window.localStorage.removeItem(GLOBAL_PARAM.TRANSAKSI_DETAIL);
+}
+
+GLOBAL_PARAM.setTransaksiDetail = function(idTransaksi, returnPage) {
+    let data = {
+        idTransaksi: idTransaksi,
+        returnPage: returnPage
+    }
+    window.localStorage.setItem(GLOBAL_PARAM.TRANSAKSI_DETAIL, JSON.stringify(data));
+}
+
+GLOBAL_PARAM.getTransaksiDetail = function() {
+    return JSON.parse(window.localStorage.getItem(GLOBAL_PARAM.TRANSAKSI_DETAIL));
 }

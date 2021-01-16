@@ -208,7 +208,16 @@ hr {
 /* paket internet konfirm */
 
 #internet-detail-paket>div>span:first-child {
-    width: 8rem;
+    min-width: 8rem;
+}
+
+/* transaksi detail */
+#transaksi-detail>div>span:first-child {
+    min-width: 8rem;
+}
+
+#transaksi-detail {
+    font-size: 1.10rem;
 }
 
 /* history */

@@ -13,5 +13,7 @@ var PAGE = {
     PULSA_CONFIRM: "pulsa-confirm.html",
     DIGITAL: "digital.html",
     DIGITAL_CONFIRM: "digital-confirm.html",
-    PROFILE: "profile.html"
+    PROFILE: "profile.html",
+    NOTIFICATION: "notification.html",
+    TRANSAKSI_DETAIL: "transaksi-detail.html"
 }

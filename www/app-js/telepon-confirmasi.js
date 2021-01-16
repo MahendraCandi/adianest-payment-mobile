@@ -41,7 +41,7 @@ telpConfirm.insertPaket = function () {
         nomorTujuan: paket.nomorTujuan,
         idUser: user.idUser
     }
-    let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.INSERT_SMS;
+    let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.INSERT_TELEPON;
     $.ajax({
         type: "POST",
         url: url,

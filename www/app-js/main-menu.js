@@ -34,12 +34,15 @@ mainMenu.getUserCredential = function () {
         success: function (data) {
             console.log(data);
             GLOBAL_PARAM.saveUserCredential(data);
+
+            getFcmToken ();
         },
         complete: function () {
             document.getElementById("top-up-btn").addEventListener("click", mainMenu.directTopUpPage, false);
             document.getElementById("history-btn").addEventListener("click", mainMenu.directHistoryPage, false);
-            document.getElementById('saldoBalance').innerText =
-                formatRupiah(GLOBAL_PARAM.getUserCredential().endingBalance, 'Rp.');
+            mainMenu.setTotalNotifikasi();
+            document.getElementById('notifikasiButton').addEventListener('click', mainMenu.directNotifikasi, false);
+            document.getElementById('saldoBalance').innerText = formatRupiah(GLOBAL_PARAM.getUserCredential().endingBalance, 'Rp.');
             document.getElementById("ubah-profile").addEventListener("click", mainMenu.ubahProfil, false);
             document.getElementById("logout").addEventListener("click", mainMenu.logout, false);
             document.getElementById("directPaketInternet").addEventListener("click", mainMenu.directInternetPage, false);
@@ -138,6 +141,21 @@ mainMenu.directGrab = function () {
 
 mainMenu.ubahProfil = function () {
     GLOBAL_PARAM.setPage(PAGE.PROFILE);
+    changePage();
+}
+
+mainMenu.setTotalNotifikasi = function () {
+    let totalNotifikasi = GLOBAL_PARAM.getUserCredential().totalUnreadNotif;
+    if (totalNotifikasi !== undefined && totalNotifikasi !== null && totalNotifikasi !== "0") {
+        $('#totalNotifikasi').show();
+        document.getElementById('totalNotifikasi').innerText = totalNotifikasi;
+    } else {
+        $('#totalNotifikasi').hide();
+    }
+}
+
+mainMenu.directNotifikasi = function () {
+    GLOBAL_PARAM.setPage(PAGE.NOTIFICATION);
     changePage();
 }
 

@@ -18,6 +18,7 @@
     <platform name="android">
         <application android:usesCleartextTraffic="true" />
         <allow-intent href="market:*" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

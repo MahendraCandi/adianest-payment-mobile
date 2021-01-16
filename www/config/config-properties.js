@@ -23,3 +23,7 @@ CONFIG_PROPERTIES.KATEGORI_DIGITAL = "/api/digital/all";
 CONFIG_PROPERTIES.INSERT_DIGITAL = "/api/digital/insert";
 CONFIG_PROPERTIES.PROFILE_PICTURE = "/api/profile/picture";
 CONFIG_PROPERTIES.UPDATE_PROFILE = "/api/profile/update";
+CONFIG_PROPERTIES.INSERT_FCM_TOKEN = "/api/fcm/insert";
+CONFIG_PROPERTIES.NOTIFICATION = "/api/notification/all";
+CONFIG_PROPERTIES.NOTIFICATION_UPDATE = "/api/notification/update";
+CONFIG_PROPERTIES.TRANSAKSI_DETAIL = "/api/transaksi/detail";
