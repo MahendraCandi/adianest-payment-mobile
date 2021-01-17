@@ -88,6 +88,17 @@ sms.fireBtn = function () {
         alert('Pilih paket yang mau dibeli!');
         return;
     }
+
+    if (!appValidation.isPhoneNumberValid(nomorTujuan)) {
+        alert('Nomor Hp yang dimasukkan tidak valid!')
+        return;
+    }
+
+    if (!appValidation.isBalanceEnough(choosedPaket.harga)) {
+        alert("Balance Saldo tidak mencukupi!")
+        return;
+    }
+
     choosedPaket.nomorTujuan = nomorTujuan;
     GLOBAL_PARAM.setPaketSms(choosedPaket);
 

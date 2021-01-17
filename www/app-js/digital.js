@@ -80,6 +80,17 @@ digital.fireBtn = function () {
         alert('Pilih paket yang mau dibeli!');
         return;
     }
+
+    if (!appValidation.isPhoneNumberValid(nomorHp)) {
+        alert('Nomor Hp yang dimasukkan tidak valid!')
+        return;
+    }
+
+    if (!appValidation.isBalanceEnough(choosedPaket.harga)) {
+        alert("Balance Saldo tidak mencukupi!")
+        return;
+    }
+
     choosedPaket.nomorHp = nomorHp;
     GLOBAL_PARAM.setDigital(choosedPaket);
 

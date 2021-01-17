@@ -27,6 +27,12 @@ topUpPage.getData = function () {
 
     document.getElementById("back-btn").addEventListener("click", topUpPage.backHistory, false);
     document.getElementById("topup-btn").addEventListener("click", topUpPage.confirmTopUp, false);
+    document.getElementById("nominal-topup").addEventListener("keyup", function(e) {
+        let amount = formatRupiah(this.value);
+        // let amount = Number(this.value).toLocaleString('ID');
+        $('#nominal-topup').val(amount);
+    }, false);
+    
     topUpPage.showView();
     topUpPage.hideModal();
 }
@@ -71,6 +77,11 @@ topUpPage.confirmTopUp = function () {
         return;
     }
 
+    if (Number(confirmBody.nominalTopUp) < 20000) {
+        alert("Pengisian top up minimal Rp. 20.000!");
+        return;
+    }
+
     let url = CONFIG_PROPERTIES.HOST_NAME + CONFIG_PROPERTIES.TOPUP_CONFIRM_INSERT;
     $.ajax({
         type: "POST",
@@ -84,7 +95,6 @@ topUpPage.confirmTopUp = function () {
         success: function (data) {
             console.log(data);
             topUpPage.saveParameter(data);
-            // window.location.href = "top-up-confirm.html";
             topUpPage.changePageToConfirm();
         },
         error: function (request, status, error) {
@@ -109,7 +119,7 @@ topUpPage.changePageToConfirm = function () {
 
 topUpPage.prepareResquestBody = function () {
     let kategoriTopUp = topUpPage.getKategoriTopUp();
-    let nominalTopUp = $('#nominal-topup').val();
+    let nominalTopUp = $('#nominal-topup').val().replace(/\./g, '').toString();
 
     let userCredential = GLOBAL_PARAM.getUserCredential();
     let requestBody = {

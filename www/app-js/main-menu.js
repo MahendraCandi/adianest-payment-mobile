@@ -42,7 +42,7 @@ mainMenu.getUserCredential = function () {
             document.getElementById("history-btn").addEventListener("click", mainMenu.directHistoryPage, false);
             mainMenu.setTotalNotifikasi();
             document.getElementById('notifikasiButton').addEventListener('click', mainMenu.directNotifikasi, false);
-            document.getElementById('saldoBalance').innerText = formatRupiah(GLOBAL_PARAM.getUserCredential().endingBalance, 'Rp.');
+            document.getElementById('saldoBalance').innerText = mainMenu.getBalance();
             document.getElementById("ubah-profile").addEventListener("click", mainMenu.ubahProfil, false);
             document.getElementById("logout").addEventListener("click", mainMenu.logout, false);
             document.getElementById("directPaketInternet").addEventListener("click", mainMenu.directInternetPage, false);
@@ -63,8 +63,14 @@ mainMenu.getUserCredential = function () {
     });
 }
 
+mainMenu.getBalance = function () {
+    let balance = Number(GLOBAL_PARAM.getUserCredential().endingBalance);
+    return formatRupiah("" + balance, 'Rp.');
+}
+
 function formatRupiah(angka, prefix) {
-    let number_string = angka.replace(/[^\.\d]/g, '').toString(),
+    
+    let number_string = angka.replace(/[^\,\d]/g, '').toString(),
         split = number_string.split(','),
         sisa = split[0].length % 3,
         rupiah = split[0].substr(0, sisa),
